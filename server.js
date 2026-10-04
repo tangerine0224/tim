@@ -31,6 +31,8 @@ const server = http.createServer((req, res) => {
     urlPath = '/projects.html';
   } else if (urlPath === '/blog') {
     urlPath = '/blog.html';
+  } else if (urlPath.startsWith('/cohorts/')) {
+    urlPath = '/cohort.html';
   }
 
   const filePath = path.join(PUBLIC_DIR, urlPath);
@@ -61,4 +63,6 @@ server.listen(PORT, () => {
   console.log(`- Recognition: http://localhost:${PORT}/recognition`);
   console.log(`- Projects:  http://localhost:${PORT}/projects`);
   console.log(`- Blog:      http://localhost:${PORT}/blog`);
+  console.log(`- Cohort 01: http://localhost:${PORT}/cohorts/cohort-01`);
+  console.log(`- Cohort 02: http://localhost:${PORT}/cohorts/cohort-02`);
 });
