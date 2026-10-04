@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 1b. Collaboration Section Tabs (For Partners vs For Students)
+  // 1b. Collaboration Section Tabs (Enterprises / Institutions / Alumni / Next Cohort)
   const collabTabBtns = document.querySelectorAll('.collab-tab-btn');
   const collabPanels = document.querySelectorAll('.collab-panel');
 
@@ -75,9 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
       newSpine.className = `spine-card spine-card-${(i % 5) + 1}`;
       newSpine.innerHTML = `
         <div class="spine-collapsed-view">
-          <span class="spine-num">0${i + 7}</span>
           <span class="spine-title-vertical">${cp.title.toUpperCase()}</span>
-          <span class="spine-badge-dot"></span>
+          <span class="spine-num">0${i + 7}</span>
         </div>
         <div class="spine-expanded-content">
           <div class="project-banner project-banner-2">
@@ -324,6 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const downloadProfileBtn = document.getElementById('downloadProfileBtn');
+  if (downloadProfileBtn) {
+    downloadProfileBtn.addEventListener('click', () => {
+      alert("Downloading USTH TIM Program Profile (PDF)...");
+    });
+  }
+
   // 6. Write Message Modal Logic
   const messageModal = document.getElementById('messageModal');
   const openNoteModalBtn = document.getElementById('openNoteModalBtn');
@@ -528,9 +534,8 @@ document.addEventListener('DOMContentLoaded', () => {
       newSpine.className = `spine-card spine-card-${(customProjCounter % 5) + 1}`;
       newSpine.innerHTML = `
         <div class="spine-collapsed-view">
-          <span class="spine-num">${spineNumStr}</span>
           <span class="spine-title-vertical">${title.toUpperCase()}</span>
-          <span class="spine-badge-dot"></span>
+          <span class="spine-num">${spineNumStr}</span>
         </div>
         <div class="spine-expanded-content">
           <div class="project-banner project-banner-2">
@@ -599,7 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Dynamic Database Addition 2: Save Founder to Advisory Board Grid
   const dbAddFounderForm = document.getElementById('dbAddFounderForm');
-  const foundersGrid = document.querySelector('.founders-grid');
 
   if (dbAddFounderForm && foundersGrid) {
     dbAddFounderForm.addEventListener('submit', (e) => {

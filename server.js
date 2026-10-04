@@ -25,6 +25,12 @@ const server = http.createServer((req, res) => {
     urlPath = '/login.html';
   } else if (urlPath === '/admin') {
     urlPath = '/admin.html';
+  } else if (urlPath === '/recognition') {
+    urlPath = '/recognition.html';
+  } else if (urlPath === '/projects') {
+    urlPath = '/projects.html';
+  } else if (urlPath === '/blog') {
+    urlPath = '/blog.html';
   }
 
   const filePath = path.join(PUBLIC_DIR, urlPath);
@@ -52,4 +58,7 @@ server.listen(PORT, () => {
   console.log(`- Portfolio: http://localhost:${PORT}/`);
   console.log(`- Login:     http://localhost:${PORT}/login`);
   console.log(`- Admin:     http://localhost:${PORT}/admin`);
+  console.log(`- Recognition: http://localhost:${PORT}/recognition`);
+  console.log(`- Projects:  http://localhost:${PORT}/projects`);
+  console.log(`- Blog:      http://localhost:${PORT}/blog`);
 });

@@ -360,6 +360,7 @@ img, svg {
 .section-meta {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
   font-family: var(--font-mono);
@@ -398,7 +399,7 @@ img, svg {
    ========================================== */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 60% 1fr;
   gap: 48px;
   align-items: center;
 }
@@ -415,6 +416,14 @@ img, svg {
 
 .hero-lead {
   margin-bottom: 36px;
+}
+
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
 }
 
 .hero-stats-row {
@@ -458,15 +467,11 @@ img, svg {
 .hero-visual-card {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #DFDFDF 0%, #E8E8E8 100%);
-  border-radius: var(--radius-card);
+  background: #E8E8E8;
   position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
 
-/* Geometric 3D Artwork (CSS SVG) */
+/* Geometric 3D Artwork */
 .hero-art-container {
   width: 100%;
   height: 100%;
@@ -476,43 +481,10 @@ img, svg {
   position: relative;
 }
 
-.hero-floating-badge {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  background: var(--surface);
-  border-radius: var(--radius-tile);
-  padding: 16px 20px;
-  border: 1px solid var(--hairline);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 10;
-}
-
-.badge-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--signal);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-family: var(--font-display);
-  font-size: 20px;
-}
-
-.badge-text-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.badge-text-sub {
-  font-size: 12px;
-  color: var(--muted);
+.hero-art-illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 
@@ -525,10 +497,12 @@ img, svg {
 
 .collab-tabs-container {
   margin-top: 28px;
+  margin-bottom: 40px;
 }
 
 .collab-tabs-wrapper {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 8px;
   background: #1A1A1A;
   padding: 6px;
@@ -602,7 +576,27 @@ img, svg {
   font-size: 15px;
   color: var(--muted-on-ink);
   line-height: 1.5;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+}
+
+.capability-desc:last-child {
+  margin-bottom: 0;
+}
+
+.capability-meta {
+  font-size: 13px;
+  color: var(--muted-on-ink);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.capability-meta:last-child {
+  margin-bottom: 0;
+}
+
+.capability-meta strong {
+  color: var(--on-ink);
+  font-weight: 600;
 }
 
 .capability-action {
@@ -690,16 +684,16 @@ img, svg {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 16px;
+  padding: 0;
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--ink-raised);
-  color: var(--on-ink);
+  background: linear-gradient(135deg, #DFDFDF 0%, #E8E8E8 100%);
+  color: var(--ink);
   z-index: 2;
   transition: opacity 0.3s ease;
   pointer-events: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid var(--hairline);
 }
 
 .spine-card-1 .spine-collapsed-view {
@@ -729,18 +723,18 @@ img, svg {
 
 .spine-num {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 34px;
   font-weight: 700;
-  color: var(--muted-on-ink);
+  color: var(--ink);
   letter-spacing: 0.05em;
 }
 
 .spine-title-vertical {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--on-ink);
+  color: var(--ink);
   letter-spacing: 0.02em;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -750,17 +744,6 @@ img, svg {
   padding: 12px 0;
   text-align: center;
   max-height: 380px;
-}
-
-.spine-badge-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-.spine-badge-dot-signal {
-  background: var(--signal);
 }
 
 /* Spine Card Content (Revealed when Expanded) */
@@ -1462,6 +1445,188 @@ img, svg {
 }
 
 
+/* ==========================================
+   RECOGNITION PAGE: KEY BUILDERS, SCATTERED
+   Static layout, 6 cards spread out unevenly —
+   deliberately not aligned to a neat grid
+   ========================================== */
+.builder-scatter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 56px 24px;
+  margin-top: 40px;
+  padding: 10px 0 56px;
+}
+
+.builder-card {
+  --ty: 0px;
+  --rot: 0deg;
+  position: relative;
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transform: translateY(var(--ty)) rotate(var(--rot));
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.builder-card:hover {
+  transform: translateY(var(--ty)) rotate(0deg) scale(1.04);
+  border-color: #444;
+  z-index: 2;
+}
+
+/* Deliberately irregular offsets — spread out, not aligned */
+.builder-card:nth-child(6n+1) { --ty: -10px; --rot: -5deg; }
+.builder-card:nth-child(6n+2) { --ty: 30px;  --rot: 3deg; }
+.builder-card:nth-child(6n+3) { --ty: 6px;   --rot: -7deg; }
+.builder-card:nth-child(6n+4) { --ty: -18px; --rot: 6deg; }
+.builder-card:nth-child(6n+5) { --ty: 34px;  --rot: -3deg; }
+.builder-card:nth-child(6n)   { --ty: 12px;  --rot: 8deg; }
+
+/* Avatar placeholder — large, square, fills the card width */
+.builder-card-avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #2E2E2E 0%, #141414 100%);
+  border-bottom: 1px solid var(--hairline-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.builder-card-avatar-initials {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--on-ink);
+}
+
+.builder-card-body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.builder-card-title-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--signal);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+}
+
+.builder-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--on-ink);
+  margin-bottom: 4px;
+}
+
+.builder-card-meta {
+  font-size: 12px;
+  color: var(--muted-on-ink);
+  margin-bottom: 2px;
+}
+
+.builder-card-major {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-on-ink);
+  margin-bottom: 16px;
+}
+
+/* Contribution stats are secondary info — small, compact, single line */
+.builder-card-stats-line {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted-on-ink);
+  line-height: 1.5;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline-dark);
+}
+
+/* ==========================================
+   BLOG PAGE: IDEA WORTH SHARING
+   ========================================== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.blog-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ink);
+}
+
+.blog-card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 16px 0 10px;
+}
+
+.blog-card-excerpt {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.blog-card-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--on-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.blog-card-author-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.blog-card-author-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .hero-grid {
@@ -1495,6 +1660,12 @@ img, svg {
   .footer-top {
     grid-template-columns: 1fr 1fr;
   }
+  .builder-scatter {
+    gap: 48px 20px;
+  }
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1518,6 +1689,16 @@ img, svg {
     grid-template-columns: 1fr;
   }
   .footer-top {
+    grid-template-columns: 1fr;
+  }
+  .builder-scatter {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 16px;
+  }
+  .builder-card-avatar-initials {
+    font-size: 48px;
+  }
+  .blog-grid {
     grid-template-columns: 1fr;
   }
 }
