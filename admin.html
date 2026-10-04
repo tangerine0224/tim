@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | USTH Technology & Innovation Management</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: var(--canvas-soft);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .admin-header {
+      background: var(--ink);
+      color: var(--on-ink);
+      padding: 16px var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--hairline-dark);
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--signal);
+      color: var(--ink);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .admin-container {
+      max-width: var(--max-width);
+      margin: 40px auto;
+      padding: 0 var(--gutter);
+    }
+
+    .admin-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--hairline);
+      padding: 40px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.04);
+    }
+
+    .admin-nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--canvas);
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+
+    .admin-tab-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .admin-tab-btn.active {
+      background: var(--ink);
+      color: var(--on-ink);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+      margin-top: 16px;
+    }
+
+    .data-table th {
+      background: var(--canvas-soft);
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .data-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--hairline);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Admin Bar -->
+  <header class="admin-header">
+    <div class="admin-brand">
+      <div class="admin-logo-mark">TIM</div>
+      <div>
+        <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; line-height: 1;">USTH TIM ADMIN PORTAL</div>
+        <div style="font-size: 11px; font-family: var(--font-mono); color: var(--muted-on-ink);" id="userRoleBadge">Logged in as: TIM Administrator</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; align-items: center;">
+      <a href="/" class="btn-outlined btn-outlined-dark" style="font-size: 13px; padding: 6px 14px;">View Public Portfolio &nearr;</a>
+      <button id="logoutBtn" class="btn-primary btn-light" style="font-size: 13px; padding: 6px 14px;">Logout &crarr;</button>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <div class="admin-card">
+      
+      <!-- Sub Navigation Tabs -->
+      <nav class="admin-nav-tabs">
+        <button class="admin-tab-btn active" data-panel="panelProjects">+ Add & Manage Projects</button>
+        <button class="admin-tab-btn" data-panel="panelFounders">+ Add & Manage Founders</button>
+        <button class="admin-tab-btn" data-panel="panelStudents">Student Cohort Directory</button>
+        <button class="admin-tab-btn" data-panel="panelMessages">Legacy Wall Moderation</button>
+      </nav>
+
+      <!-- Panel 1: Manage Projects -->
+      <section class="admin-panel" id="panelProjects" style="display: block;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+          <div>
+            <span class="badge-tag">PROJECTS DATABASE</span>
+            <h2 class="display-m" style="margin-top: 8px;">CAPSTONE & RESEARCH PROJECTS.</h2>
+          </div>
+          <span class="mono-text" style="color: var(--muted);" id="projectCountBadge">6 PROJECTS IN DATABASE</span>
+        </div>
+
+        <!-- Add Project Form -->
+        <div style="background: var(--canvas-soft); padding: 28px; border-radius: var(--radius-card); border: 1px solid var(--hairline); margin-bottom: 36px;">
+          <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--ink);">+ ADD NEW PROJECT TO DATABASE</h3>
+          <form id="addProjectForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">Project Title</label>
+                <input type="text" id="pTitle" class="form-input" placeholder="e.g. Quantum Cryptography for Smart Grids" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cohort Generation</label>
+                <select id="pGen" class="form-select" required>
+                  <option value="GENERATION 1">Generation 1 Pioneer</option>
+                  <option value="GEN 2 FOCUS AREA">Gen 2 Target Focus Area</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">Partner / Sponsor</label>
+                <input type="text" id="pPartner" class="form-input" placeholder="e.g. Viettel High Tech" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Metric Value</label>
+                <input type="text" id="pMetricVal" class="form-input" placeholder="e.g. €120,000 / 2 Patents" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Metric Label</label>
+                <input type="text" id="pMetricLbl" class="form-input" placeholder="e.g. Grant Funding / Patents" required>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label">Description / Abstract</label>
+              <textarea id="pDesc" class="form-textarea" placeholder="Detailed research summary and commercialization impact..." required style="min-height: 80px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" style="padding: 12px 24px;">Save Project & Update Bookshelf &rarr;</button>
+          </form>
+        </div>
+
+        <!-- Project List Table -->
+        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">ACTIVE DATABASE ENTRIES</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Generation</th>
+              <th>Partner</th>
+              <th>Metrics</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="projectsTableBody">
+            <!-- Dynamic rows populated via JS -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Panel 2: Manage Founders -->
+      <section class="admin-panel" id="panelFounders" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+          <div>
+            <span class="badge-tag">FOUNDERS & ADVISORS</span>
+            <h2 class="display-m" style="margin-top: 8px;">PIONEERS & ADVISORY BOARD.</h2>
+          </div>
+        </div>
+
+        <!-- Add Founder Form -->
+        <div style="background: var(--canvas-soft); padding: 28px; border-radius: var(--radius-card); border: 1px solid var(--hairline); margin-bottom: 36px;">
+          <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">+ ADD NEW FOUNDER OR ADVISOR</h3>
+          <form id="addFounderForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="fName" class="form-input" placeholder="e.g. Dr. Marc Delacroix" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Role Title</label>
+                <input type="text" id="fRole" class="form-input" placeholder="e.g. Co-R&D Chair / Visiting Professor" required>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label">Institution / Affiliation</label>
+              <input type="text" id="fAffil" class="form-input" placeholder="e.g. CNRS France / Airbus Asia Research" required>
+            </div>
+
+            <button type="submit" class="btn-primary" style="padding: 12px 24px;">Add Founder to Public Board &rarr;</button>
+          </form>
+        </div>
+
+        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">CURRENT ADVISORY BOARD DIRECTORY</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Institution</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="foundersTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Panel 3: Student Cohort Directory -->
+      <section class="admin-panel" id="panelStudents" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+          <div>
+            <span class="badge-tag badge-tag-mint">STUDENT DIRECTORY</span>
+            <h2 class="display-m" style="margin-top: 8px;">GEN 1 & GEN 2 COHORT RECORDS.</h2>
+          </div>
+          <span class="mono-text" style="color: var(--muted);">18 MASTERS ENROLLED</span>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Candidate Name</th>
+              <th>Cohort</th>
+              <th>Capstone Topic</th>
+              <th>Enterprise Placement</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 600;">Trinh Nhat Minh</td>
+              <td><span class="badge-tag">GEN 1</span></td>
+              <td>Smart Grid AI Optimization</td>
+              <td>Viettel High Tech R&D</td>
+              <td><span style="color: green; font-weight: 600;">Graduated &bull; Valedictorian</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">Tran Thi Thu Hang</td>
+              <td><span class="badge-tag">GEN 1</span></td>
+              <td>DeepTech Venture IP Valuation</td>
+              <td>VinAI Research</td>
+              <td><span style="color: green; font-weight: 600;">Graduated &bull; Spin-off CEO</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">Le Hoang Nam</td>
+              <td><span class="badge-tag">GEN 1</span></td>
+              <td>Circular Plastics Traceability</td>
+              <td>Unilever Vietnam</td>
+              <td><span style="color: green; font-weight: 600;">Graduated &bull; Tech Lead</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">Pham Minh Anh</td>
+              <td><span class="badge-tag">GEN 1</span></td>
+              <td>Bio-Silica Nanocomposites</td>
+              <td>CNRS Green Lab</td>
+              <td><span style="color: green; font-weight: 600;">Graduated &bull; PhD Scholar</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600;">Gen 2 Intake Scholar #1</td>
+              <td><span class="badge-tag badge-tag-mint">GEN 2</span></td>
+              <td>Autonomous Drone Swarms</td>
+              <td>Airbus Asia Fellowship</td>
+              <td><span style="color: blue; font-weight: 600;">Incoming Candidate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Panel 4: Legacy Wall Messages Moderation -->
+      <section class="admin-panel" id="panelMessages" style="display: none;">
+        <div style="margin-bottom: 24px;">
+          <span class="badge-tag badge-tag-signal">MODERATION</span>
+          <h2 class="display-m" style="margin-top: 8px;">PAY IT FORWARD MESSAGES.</h2>
+        </div>
+        <p style="color: var(--muted); font-size: 15px; margin-bottom: 24px;">
+          Review and manage user-submitted encouragement messages for Generation 2 incoming candidates.
+        </p>
+        <div style="background: var(--canvas-soft); padding: 24px; border-radius: var(--radius-tile); border: 1px solid var(--hairline);">
+          <div style="font-weight: 600; margin-bottom: 8px;">Status: All 3 Legacy Wall Messages Approved & Published</div>
+          <div style="font-size: 13px; color: var(--muted);">Messages are rendered live on the public portfolio page.</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Authentication Check
+    const authData = JSON.parse(localStorage.getItem('tim_portal_user') || '{}');
+    if (!authData.loggedIn) {
+      window.location.href = '/login';
+    } else {
+      document.getElementById('userRoleBadge').textContent = `Logged in as: TIM ${authData.role || 'Admin'}`;
+    }
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('tim_portal_user');
+      window.location.href = '/login';
+    });
+
+    // Panel Tab Switching
+    const panelBtns = document.querySelectorAll('.admin-tab-btn');
+    const panels = document.querySelectorAll('.admin-panel');
+
+    panelBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        panelBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.getAttribute('data-panel');
+        panels.forEach(p => {
+          p.style.display = p.id === target ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Default Initial Data
+    let defaultProjects = [
+      { id: 'p1', title: 'AI-Driven Energy Optimization for Industrial Parks', gen: 'GENERATION 1', partner: 'SCHNEIDER ELECTRIC', val: '24.5%', lbl: 'Energy Savings' },
+      { id: 'p2', title: 'DeepTech Venture Commercialization Framework', gen: 'GENERATION 1', partner: 'VINAI & VAST', val: '$150,000', lbl: 'Seed Raised' },
+      { id: 'p3', title: 'Circular Plastics Traceability Ledger', gen: 'GENERATION 1', partner: 'UNILEVER VIETNAM', val: '4 Pilots', lbl: 'Plants Deployed' },
+      { id: 'p4', title: 'Autonomous Drone Fleet for Precision Agriculture', gen: 'GEN 2 FOCUS AREA', partner: 'USTH-CNRS JOINT LAB', val: 'OPEN', lbl: 'Sponsorship' },
+      { id: 'p5', title: 'Next-Gen Bio-Polymers from Agricultural Waste', gen: 'GENERATION 1', partner: 'CNRS GREEN LAB', val: '3 Patents', lbl: 'PCT Filings' },
+      { id: 'p6', title: 'Quantum-Safe Encryption for Smart Grids', gen: 'GEN 2 FOCUS AREA', partner: 'VIETTEL HIGH TECH', val: 'OPEN', lbl: 'Sponsorship' }
+    ];
+
+    let storedProjects = JSON.parse(localStorage.getItem('tim_custom_projects') || '[]');
+    let allProjects = [...defaultProjects, ...storedProjects];
+
+    function renderProjectsTable() {
+      const tbody = document.getElementById('projectsTableBody');
+      tbody.innerHTML = '';
+      allProjects.forEach((p, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 600;">${p.title}</td>
+          <td><span class="badge-tag">${p.gen}</span></td>
+          <td>${p.partner}</td>
+          <td>${p.val} (${p.lbl})</td>
+          <td><button onclick="removeProject(${idx})" class="btn-outlined" style="padding: 4px 8px; font-size: 11px; color: red;">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+      document.getElementById('projectCountBadge').textContent = `${allProjects.length} PROJECTS IN DATABASE`;
+    }
+
+    function removeProject(idx) {
+      allProjects.splice(idx, 1);
+      localStorage.setItem('tim_custom_projects', JSON.stringify(allProjects.filter(p => !defaultProjects.some(dp => dp.id === p.id))));
+      renderProjectsTable();
+    }
+
+    renderProjectsTable();
+
+    // Add New Project Form Handler
+    document.getElementById('addProjectForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const newP = {
+        id: 'p_custom_' + Date.now(),
+        title: document.getElementById('pTitle').value,
+        gen: document.getElementById('pGen').value,
+        partner: document.getElementById('pPartner').value.toUpperCase(),
+        val: document.getElementById('pMetricVal').value,
+        lbl: document.getElementById('pMetricLbl').value,
+        desc: document.getElementById('pDesc').value
+      };
+
+      storedProjects.push(newP);
+      localStorage.setItem('tim_custom_projects', JSON.stringify(storedProjects));
+      allProjects.push(newP);
+      renderProjectsTable();
+
+      document.getElementById('addProjectForm').reset();
+      alert(`Project "${newP.title}" saved! Synchronized with the public portfolio Bookshelf.`);
+    });
+
+    // Default Founders Data
+    let defaultFounders = [
+      { name: 'Prof. Jean-Marc Rossi', role: 'Academic Co-Director & Chair', affil: 'French Consortium / USTH' },
+      { name: 'Assoc. Prof. Nguyen Van Ha', role: 'Program Director', affil: 'Head of TIM Department, USTH' },
+      { name: 'Dr. Valérie Moreau', role: 'Tech Transfer Advisor', affil: 'CNRS France' },
+      { name: 'Eng. Tran Minh Duc', role: 'Industry Advisor', affil: 'CIO, FPT Corporation' }
+    ];
+
+    let storedFounders = JSON.parse(localStorage.getItem('tim_custom_founders') || '[]');
+    let allFounders = [...defaultFounders, ...storedFounders];
+
+    function renderFoundersTable() {
+      const tbody = document.getElementById('foundersTableBody');
+      tbody.innerHTML = '';
+      allFounders.forEach(f => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 600;">${f.name}</td>
+          <td>${f.role}</td>
+          <td>${f.affil}</td>
+          <td><span style="color: green; font-size: 12px;">Active</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    renderFoundersTable();
+
+    document.getElementById('addFounderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newF = {
+        name: document.getElementById('fName').value,
+        role: document.getElementById('fRole').value,
+        affil: document.getElementById('fAffil').value
+      };
+      storedFounders.push(newF);
+      localStorage.setItem('tim_custom_founders', JSON.stringify(storedFounders));
+      allFounders.push(newF);
+      renderFoundersTable();
+      document.getElementById('addFounderForm').reset();
+      alert(`Founder "${newF.name}" saved to advisory board!`);
+    });
+  </script>
+
+</body>
+</html>
