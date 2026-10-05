@@ -13,6 +13,8 @@ export default {
       pathname = '/recognition.html';
     } else if (pathname === '/projects') {
       pathname = '/projects.html';
+    } else if (pathname.startsWith('/projects/')) {
+      pathname = '/project.html';
     } else if (pathname === '/blog') {
       pathname = '/blog.html';
     } else if (pathname.startsWith('/cohorts/')) {

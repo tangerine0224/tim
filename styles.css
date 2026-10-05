@@ -637,31 +637,25 @@ img, svg {
 
 .bookshelf-carousel {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 16px 8px 32px 8px;
+  align-items: stretch;
+  gap: clamp(8px, 1vw, 16px);
+  height: clamp(440px, 48vw, 560px);
   border-bottom: 3px solid var(--ink);
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  min-height: 480px;
-}
-
-.bookshelf-carousel::-webkit-scrollbar {
-  display: none;
+  padding-bottom: 16px;
+  width: 100%;
 }
 
 /* Bookshelf Spine & Expandable Card */
 .spine-card {
-  flex: 0 0 150px;
-  height: 500px;
+  flex: 1 1 0;
+  min-width: 56px;
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-card);
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: flex 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: flex-grow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 16px rgba(0,0,0,0.08);
@@ -669,22 +663,21 @@ img, svg {
 
 .spine-card:hover,
 .spine-card.expanded {
-  flex: 0 0 460px;
-  width: 460px;
-  max-width: 92vw;
+  flex: 4 1 0;
+  min-width: 380px;
   box-shadow: 0 16px 40px rgba(0,0,0,0.16);
   border-color: var(--ink);
 }
 
 /* Spine Cover (Collapsed State - Dark Cover Aesthetic) */
 .spine-collapsed-view {
-  width: 150px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
+  padding: clamp(28px, 3vw, 40px) clamp(8px, 1vw, 14px) clamp(20px, 2.4vw, 32px);
   position: absolute;
   top: 0;
   left: 0;
@@ -694,25 +687,7 @@ img, svg {
   transition: opacity 0.3s ease;
   pointer-events: none;
   border-right: 1px solid var(--hairline);
-}
-
-.spine-card-1 .spine-collapsed-view {
-  border-left: 6px solid var(--signal);
-}
-.spine-card-2 .spine-collapsed-view {
-  border-left: 6px solid var(--render-green);
-}
-.spine-card-3 .spine-collapsed-view {
-  border-left: 6px solid var(--render-magenta);
-}
-.spine-card-4 .spine-collapsed-view {
-  border-left: 6px solid var(--render-cyan);
-}
-.spine-card-5 .spine-collapsed-view {
-  border-left: 6px solid var(--render-orange);
-}
-.spine-card-6 .spine-collapsed-view {
-  border-left: 6px solid var(--mint);
+  box-sizing: border-box;
 }
 
 .spine-card:hover .spine-collapsed-view,
@@ -723,33 +698,37 @@ img, svg {
 
 .spine-num {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: clamp(28px, 3vw, 44px);
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0.05em;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 .spine-title-vertical {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: clamp(15px, 1.5vw, 22px);
   font-weight: 700;
   text-transform: uppercase;
   color: var(--ink);
   letter-spacing: 0.02em;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  white-space: normal;
-  word-break: break-word;
   line-height: 1.25;
-  padding: 12px 0;
+  padding: 0;
   text-align: center;
-  max-height: 380px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Spine Card Content (Revealed when Expanded) */
 .spine-expanded-content {
   width: 100%;
-  min-width: 460px;
+  min-width: 380px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -778,12 +757,15 @@ img, svg {
 .bookshelf-hint {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
+  flex-wrap: wrap;
+  row-gap: 8px;
 }
 
 .carousel-nav-btns {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .carousel-arrow-btn {
@@ -855,7 +837,7 @@ img, svg {
 
 .project-body {
   width: 100%;
-  padding: 32px;
+  padding: clamp(24px, 2.6vw, 40px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -863,11 +845,16 @@ img, svg {
 }
 
 .project-title {
-  font-size: 24px;
+  font-size: clamp(22px, 2vw, 32px);
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 12px;
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-desc {
@@ -904,6 +891,8 @@ img, svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 16px;
 }
 
 .partner-tag {
@@ -1102,12 +1091,12 @@ img, svg {
   background: var(--ink-raised);
   border-radius: var(--radius-tile);
   border: 1px solid var(--hairline-dark);
-  height: 100px;
+  min-height: 108px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 18px 14px;
   gap: 8px;
   transition: all 0.2s ease;
 }
@@ -1122,6 +1111,18 @@ img, svg {
   height: 32px;
   width: auto;
   fill: var(--on-ink);
+}
+
+.logo-tile-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--on-ink);
+  font-size: clamp(13px, 1.5vw, 17px);
+  text-align: center;
+  word-break: break-word;
 }
 
 .logo-tile-name {
@@ -1260,9 +1261,50 @@ img, svg {
   border-color: var(--ink);
 }
 
+.form-input.invalid, .form-select.invalid, .form-textarea.invalid {
+  border-color: #D93025;
+}
+
 .form-textarea {
   resize: vertical;
   min-height: 110px;
+}
+
+.form-error {
+  display: none;
+  font-size: 12px;
+  color: #D93025;
+}
+
+.form-error.visible {
+  display: block;
+}
+
+.interest-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.interest-pill {
+  padding: 8px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.interest-pill:hover {
+  border-color: var(--ink);
+}
+
+.interest-pill.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
 }
 
 .form-success-state {
@@ -1397,7 +1439,44 @@ img, svg {
   gap: 16px;
   font-family: var(--font-mono);
   font-size: 12px;
+  text-transform: uppercase;
   color: var(--muted-on-ink);
+}
+
+.footer-disclaimer-row {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-disclaimer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-on-ink);
+  opacity: 0.7;
+}
+
+.footer-to-top-btn {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted-on-ink);
+  background: transparent;
+  border: 1px solid var(--hairline-dark);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-to-top-btn:hover {
+  color: var(--on-ink);
+  border-color: var(--on-ink);
 }
 
 
@@ -1923,6 +2002,319 @@ img, svg {
   color: var(--on-ink);
 }
 
+/* ==========================================
+   BOOKSHELF LEGEND (homepage + /projects)
+   ========================================== */
+.bookshelf-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.bookshelf-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.bookshelf-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   PROJECT TAGS: support type & co-created
+   ========================================== */
+.support-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  margin: 0 6px 6px 0;
+}
+
+.support-tag-cocreated {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================
+   STATUS BADGE
+   ========================================== */
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.status-in-progress {
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+  background: transparent;
+}
+
+.status-piloting {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.status-completed {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+/* ==========================================
+   PROJECT INFO CARD (detail page)
+   ========================================== */
+.project-info-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.project-info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.project-info-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.project-info-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.project-info-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ==========================================
+   CATEGORY FILTER TABS (/projects)
+   ========================================== */
+.category-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.category-tab:hover {
+  border-color: var(--ink);
+}
+
+.category-tab.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+.category-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   PROJECTS FILTER BAR (/projects, sticky)
+   ========================================== */
+.projects-filter-bar {
+  position: sticky;
+  top: 88px;
+  z-index: 40;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+}
+
+.projects-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projects-filter-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+.projects-filter-row2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.projects-filter-row2 .form-input {
+  flex: 1 1 220px;
+  margin-bottom: 0;
+}
+
+.projects-filter-row2 .form-select {
+  flex: 0 1 170px;
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   PROJECTS GRID (/projects)
+   ========================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card-v2 {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card-v2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.06);
+}
+
+.project-card-v2-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.project-card-v2-category {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.project-card-v2-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.project-card-v2-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.project-card-v2-outcome {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.project-card-v2-tags {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.project-card-v2-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.project-card-v2-arrow {
+  color: var(--ink);
+  transition: transform 0.2s ease;
+}
+
+.project-card-v2:hover .project-card-v2-arrow {
+  transform: translateX(4px);
+}
+
+.project-fund-tile {
+  grid-column: 1 / -1;
+  background: var(--ink-raised);
+  color: var(--on-ink);
+  border-radius: var(--radius-card);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.projects-empty-state {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--canvas-soft);
+  border-radius: var(--radius-card);
+}
+
+.projects-empty-state p {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .hero-grid {
@@ -1933,7 +2325,7 @@ img, svg {
     grid-template-columns: 1fr;
   }
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   .founders-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1954,7 +2346,11 @@ img, svg {
     grid-template-columns: 1fr;
   }
   .footer-top {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 40px;
+  }
+  .footer-brand-col {
+    grid-column: 1 / -1;
   }
   .builder-scatter {
     gap: 48px 20px;
@@ -1964,6 +2360,22 @@ img, svg {
   }
   .cohort-stats-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Bookshelf: still 1 open card + 5 spines in a row, narrower proportions */
+  .spine-card:hover,
+  .spine-card.expanded {
+    flex: 3 1 0;
+    min-width: 320px;
+  }
+  .spine-card {
+    min-width: 48px;
+  }
+  .spine-expanded-content {
+    min-width: 320px;
+  }
+  .spine-title-vertical {
+    -webkit-line-clamp: 1;
   }
 }
 
@@ -1990,6 +2402,15 @@ img, svg {
   .footer-top {
     grid-template-columns: 1fr;
   }
+  .footer-bottom-mono {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-disclaimer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
   .builder-scatter {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px 16px;
@@ -2003,10 +2424,106 @@ img, svg {
   .cohorts-grid {
     grid-template-columns: 1fr;
   }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-fund-tile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .projects-filter-bar {
+    position: static;
+  }
+  .projects-filter-row2 .form-input,
+  .projects-filter-row2 .form-select {
+    flex: 1 1 100%;
+  }
   .cohort-highlights-grid {
     grid-template-columns: 1fr;
   }
   .cohort-hero-centered {
     min-height: 0;
+  }
+}
+
+/* Below 768px only — the 768-1023px tier above still keeps the
+   bookshelf as 1 open card + 5 spines in a row. */
+@media (max-width: 767px) {
+  /* Bookshelf -> vertical accordion */
+  .bookshelf-carousel {
+    flex-direction: column;
+    height: auto;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .spine-card,
+  .spine-card:hover,
+  .spine-card.expanded {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+  }
+
+  .spine-collapsed-view {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+    opacity: 1;
+  }
+
+  .spine-card.expanded .spine-collapsed-view {
+    display: none;
+  }
+
+  .spine-num {
+    font-size: 20px;
+    order: -1;
+  }
+
+  .spine-title-vertical {
+    writing-mode: horizontal-tb;
+    transform: none;
+    text-align: left;
+    -webkit-line-clamp: 1;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .spine-expanded-content {
+    display: none;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+  }
+
+  .spine-card.expanded .spine-expanded-content {
+    display: flex;
+  }
+
+  .bookshelf-legend {
+    width: 100%;
+    gap: 8px 16px;
+  }
+
+  .bookshelf-legend-item {
+    flex: 0 0 calc(50% - 8px);
+  }
+
+  .carousel-nav-btns {
+    display: none;
   }
 }

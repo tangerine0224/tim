@@ -29,6 +29,8 @@ const server = http.createServer((req, res) => {
     urlPath = '/recognition.html';
   } else if (urlPath === '/projects') {
     urlPath = '/projects.html';
+  } else if (urlPath.startsWith('/projects/')) {
+    urlPath = '/project.html';
   } else if (urlPath === '/blog') {
     urlPath = '/blog.html';
   } else if (urlPath.startsWith('/cohorts/')) {
