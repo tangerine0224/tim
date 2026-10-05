@@ -1,0 +1,10 @@
+.git
+.gitignore
+.DS_Store
+.claude
+.wrangler
+.assetsignore
+DESIGN TIM.md
+server.js
+worker.js
+wrangler.toml
