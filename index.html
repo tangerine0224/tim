@@ -20,10 +20,9 @@
   <header class="header-nav" id="mainHeader">
     <div class="nav-container">
       <a href="#hero" class="nav-brand">
-        <div class="nav-brand-logo">TIM</div>
+        <img src="/tim-connect-logo.svg" alt="TIM Connect logo" class="nav-brand-logo">
         <div class="nav-brand-text">
-          <span class="nav-brand-title">USTH TIM</span>
-          <span class="nav-brand-sub">MASTER PROGRAM</span>
+          <span class="nav-brand-title">TIM CONNECT</span>
         </div>
       </a>
 
@@ -37,7 +36,7 @@
       </nav>
 
       <div class="nav-right-actions" style="display: flex; align-items: center; gap: 12px;">
-        <a href="/login" class="btn-outlined nav-portal-btn" id="portalLoginBtn" style="font-size: 13px; padding: 8px 14px;">
+        <a href="/admin" class="btn-outlined nav-portal-btn" style="font-size: 13px; padding: 8px 14px;">
           <span>Login</span>
         </a>
 
@@ -673,58 +672,124 @@
           <div>
             <div class="section-meta">
               <span class="badge-tag">QUESTIONS & ANSWERS</span>
-              <span>STAKEHOLDER CLARITY</span>
+              <span>FOR PARTNERS, ALUMNI &amp; THE NEXT COHORT</span>
             </div>
 
             <h2 class="display-l">FREQUENTLY ASKED QUESTIONS.</h2>
 
             <p class="lead-text" style="margin-top: 16px;">
-              Find clear answers tailored for enterprise leaders, sponsors, alumni mentors, and prospective Generation 2 candidates.
+              Quick answers for enterprises, institutions, USTH alumni and future students.
             </p>
+
+            <a href="#contact" class="faq-contact-link">Can't find yours? Ask us directly &rarr;</a>
           </div>
 
-          <div class="faq-accordion">
-            <!-- FAQ 1 -->
-            <div class="faq-item active">
-              <button class="faq-question">
-                <span>How can my enterprise submit a capstone problem statement for Gen 2?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                Enterprises can submit capstone proposals by contacting the TIM Program Office or filling out our engagement form below. Proposals are evaluated by our joint USTH-French academic committee, and matched with Gen 2 Master candidates for a 9-month execution phase starting in September.
-              </div>
+          <div class="faq-list-col">
+            <div class="faq-filter-row" id="faqFilterRow">
+              <button type="button" class="category-tab active" data-group="all">All</button>
+              <button type="button" class="category-tab" data-group="enterprises">Enterprises</button>
+              <button type="button" class="category-tab" data-group="institutions">Institutions</button>
+              <button type="button" class="category-tab" data-group="alumni">Alumni</button>
+              <button type="button" class="category-tab" data-group="next-cohort">Next Cohort</button>
             </div>
 
-            <!-- FAQ 2 -->
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>What sponsorship tiers and naming rights are available for research labs?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                We offer three sponsorship tiers: Fellowship Sponsor (€5,000/student), Innovation Lab Sponsor (€25,000/year for equipment & co-branding), and Chair Sponsor (€50,000+ for multi-year co-R&D initiatives with full IP co-ownership options).
+            <div class="faq-accordion" id="faqAccordion">
+              <!-- FAQ 1 -->
+              <div class="faq-item active" data-group="enterprises">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">ENTERPRISES</span>
+                    <span class="faq-question-text">How can my organisation bring a challenge to the program?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Send us a short description through the Get in touch form: the problem, the data you can share and one contact person. We match it to a course or capstone, and a cross-sector student team works on it under faculty guidance.
+                </div>
               </div>
-            </div>
 
-            <!-- FAQ 3 -->
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>What are the entry requirements and curriculum focus for Generation 2?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                Gen 2 applicants require a Bachelor degree in STEM, Engineering, Business, or Economics with demonstrated interest in technology management. The 2-year curriculum covers Technology Strategy, Intellectual Property & Patent Commercialization, Data-Driven Innovation, and a mandatory 6 to 9-month Master thesis/capstone.
+              <!-- FAQ 2 -->
+              <div class="faq-item" data-group="enterprises">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">ENTERPRISES</span>
+                    <span class="faq-question-text">What does it cost, and how long does it take?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Bringing a challenge costs nothing. A course project usually runs 8 to 10 weeks, while a capstone can run longer. If you choose to fund a project, we agree the scope and budget with you before any work starts.
+                </div>
               </div>
-            </div>
 
-            <!-- FAQ 4 -->
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>How can Generation 1 alumni register as mentors or thesis evaluators?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                Gen 1 alumni can join the TIM Alumni Advisory Circle by submitting the "Pay It Forward" contact form. Alumni mentors receive invitations to guest lecture, review capstone midterms, and sit on final defense panels alongside French professors.
+              <!-- FAQ 3 -->
+              <div class="faq-item" data-group="enterprises">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">ENTERPRISES</span>
+                    <span class="faq-question-text">What happens to our data and the results?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  You decide what data to share. We can sign a simple confidentiality agreement before the project starts, and nothing appears on this site without your approval.
+                </div>
+              </div>
+
+              <!-- FAQ 4 -->
+              <div class="faq-item" data-group="institutions">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">INSTITUTIONS</span>
+                    <span class="faq-question-text">How can our centre or research team work with the cohort?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Through startup mentoring, joint research and real cases for teaching. Tell us what you need, and we will suggest a format that fits your calendar.
+                </div>
+              </div>
+
+              <!-- FAQ 5 -->
+              <div class="faq-item" data-group="alumni">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">ALUMNI</span>
+                    <span class="faq-question-text">I graduated from another USTH program. Can I get involved?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Yes. USTH alumni are welcome as mentors, guest speakers or connectors to their organisations. Use the Get in touch form and choose "USTH alumni or mentor".
+                </div>
+              </div>
+
+              <!-- FAQ 6 -->
+              <div class="faq-item" data-group="next-cohort">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">NEXT COHORT</span>
+                    <span class="faq-question-text">When does Cohort 02 start, and how can I apply?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Cohort 02 is coming soon. Choose "Prospective student (Cohort 02)" in the Get in touch form, and we will send you admission details as soon as they are published.
+                </div>
+              </div>
+
+              <!-- FAQ 7 -->
+              <div class="faq-item" data-group="next-cohort">
+                <button class="faq-question">
+                  <span class="faq-question-main">
+                    <span class="faq-group-label">NEXT COHORT</span>
+                    <span class="faq-question-text">What will Cohort 02 inherit from Cohort 01?</span>
+                  </span>
+                  <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                  Active partners, ongoing projects and a handbook of practical lessons, so you start with a network instead of a blank page.
+                </div>
               </div>
             </div>
           </div>
@@ -927,133 +992,6 @@
         </div>
         <button type="submit" class="btn-primary" style="width: 100%;">Post Message to Legacy Wall &rarr;</button>
       </form>
-    </div>
-  </div>
-
-  <!-- Student / Admin Portal Modal -->
-  <div class="modal-backdrop" id="portalModal">
-    <div class="modal-card" style="max-width: 840px;">
-      <button class="modal-close-btn" id="closePortalModalBtn">&times;</button>
-      
-      <!-- View 1: 1-Click Login Screen -->
-      <div id="portalLoginView">
-        <div class="badge-tag badge-tag-signal" style="margin-bottom: 12px; display: inline-block;">TIM DATABASE PORTAL</div>
-        <h3 class="display-m" style="margin-bottom: 12px; color: var(--ink);">INTERNAL PROGRAM PORTAL ACCESS.</h3>
-        <p style="font-size: 15px; color: var(--muted); margin-bottom: 24px;">
-          Internal management portal for USTH TIM students, founders, and administrators to edit and update the live website database.
-        </p>
-
-        <div style="background: var(--canvas-soft); padding: 24px; border-radius: var(--radius-tile); border: 1px solid var(--hairline); margin-bottom: 24px;">
-          <div class="mono-text" style="color: var(--ink); margin-bottom: 12px;">SELECT PORTAL DEMO ROLE</div>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="tab-btn active role-select-btn" data-role="Admin">Program Administrator</button>
-            <button class="tab-btn role-select-btn" data-role="Student">Gen 1 / Gen 2 Student</button>
-            <button class="tab-btn role-select-btn" data-role="Founder">Faculty Founder</button>
-          </div>
-          <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">
-            &bull; Demo Mode Active: Authentication is pre-verified for testing. Click below to enter portal immediately.
-          </p>
-        </div>
-
-        <button class="btn-primary" id="oneClickLoginBtn" style="width: 100%; padding: 14px; font-size: 15px;">
-          1-Click Quick Portal Login &rarr;
-        </button>
-      </div>
-
-      <!-- View 2: Logged-in Portal Database Dashboard -->
-      <div id="portalDashboardView" style="display: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--hairline); padding-bottom: 16px; margin-bottom: 24px;">
-          <div>
-            <span class="badge-tag badge-tag-mint" style="margin-bottom: 4px; display: inline-block;">DATABASE DASHBOARD</span>
-            <div style="font-size: 18px; font-weight: 700; color: var(--ink);" id="portalUserHeader">Logged in as: TIM Administrator</div>
-          </div>
-          <button class="btn-outlined" id="portalLogoutBtn" style="padding: 6px 14px; font-size: 12px;">Logout &crarr;</button>
-        </div>
-
-        <!-- Dashboard Sub-Tabs -->
-        <div class="filter-tabs" style="margin-bottom: 24px; width: 100%; display: flex;">
-          <button class="tab-btn active portal-tab-btn" data-tab="tabFounders">+ Add Founder / Advisor</button>
-          <button class="tab-btn portal-tab-btn" data-tab="tabStudents">Student Cohort Directory</button>
-        </div>
-
-        <!-- Tab Content 2: Add Founder -->
-        <div class="portal-tab-panel" id="tabFounders" style="display: block;">
-          <form id="dbAddFounderForm">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-              <div class="form-group">
-                <label class="form-label" for="dbFounderName">Full Name & Title</label>
-                <input type="text" id="dbFounderName" class="form-input" placeholder="e.g. Dr. Marianne Dupont" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="dbFounderRole">Role / Program Title</label>
-                <input type="text" id="dbFounderRole" class="form-input" placeholder="e.g. Senior Tech Transfer Advisor" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="dbFounderAffil">Institution / Affiliation</label>
-              <input type="text" id="dbFounderAffil" class="form-input" placeholder="e.g. CNRS France / Dassault Systèmes Innovation Lab" required>
-            </div>
-
-            <button type="submit" class="btn-primary" style="width: 100%;">Add Founder to Advisory Board &rarr;</button>
-          </form>
-        </div>
-
-        <!-- Tab Content 3: Student Directory -->
-        <div class="portal-tab-panel" id="tabStudents" style="display: none;">
-          <div style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-            <div class="mono-text" style="color: var(--muted);">TIM COHORT DATABASE (GEN 1 & GEN 2)</div>
-            <span class="badge-tag">18 ENROLLED MASTERS</span>
-          </div>
-
-          <div style="max-height: 280px; overflow-y: auto; border: 1px solid var(--hairline); border-radius: var(--radius-tile);">
-            <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
-              <thead>
-                <tr style="background: var(--canvas-soft); border-bottom: 1px solid var(--hairline); font-family: var(--font-mono);">
-                  <th style="padding: 10px 14px;">Name</th>
-                  <th style="padding: 10px 14px;">Gen</th>
-                  <th style="padding: 10px 14px;">Capstone Focus</th>
-                  <th style="padding: 10px 14px;">Enterprise Placement</th>
-                </tr>
-              </thead>
-              <tbody id="studentTableBody">
-                <tr style="border-bottom: 1px solid var(--hairline);">
-                  <td style="padding: 10px 14px; font-weight: 600;">Trinh Nhat Minh</td>
-                  <td style="padding: 10px 14px;"><span class="badge-tag">GEN 1</span></td>
-                  <td style="padding: 10px 14px;">Smart Grid AI Optimization</td>
-                  <td style="padding: 10px 14px;">Viettel High Tech</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--hairline);">
-                  <td style="padding: 10px 14px; font-weight: 600;">Tran Thi Thu Hang</td>
-                  <td style="padding: 10px 14px;"><span class="badge-tag">GEN 1</span></td>
-                  <td style="padding: 10px 14px;">DeepTech IP Valuation</td>
-                  <td style="padding: 10px 14px;">VinAI Research</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--hairline);">
-                  <td style="padding: 10px 14px; font-weight: 600;">Le Hoang Nam</td>
-                  <td style="padding: 10px 14px;"><span class="badge-tag">GEN 1</span></td>
-                  <td style="padding: 10px 14px;">Circular Plastics Ledger</td>
-                  <td style="padding: 10px 14px;">Unilever Vietnam</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--hairline);">
-                  <td style="padding: 10px 14px; font-weight: 600;">Pham Minh Anh</td>
-                  <td style="padding: 10px 14px;"><span class="badge-tag">GEN 1</span></td>
-                  <td style="padding: 10px 14px;">Bio-Silica Nanocomposites</td>
-                  <td style="padding: 10px 14px;">CNRS Green Lab</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--hairline);">
-                  <td style="padding: 10px 14px; font-weight: 600;">Gen 2 Intake Candidate #1</td>
-                  <td style="padding: 10px 14px;"><span class="badge-tag badge-tag-mint">GEN 2</span></td>
-                  <td style="padding: 10px 14px;">Autonomous Agri-Drone Swarms</td>
-                  <td style="padding: 10px 14px;">Airbus R&D Fellowship</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
     </div>
   </div>
 

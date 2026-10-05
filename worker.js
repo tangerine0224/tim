@@ -5,8 +5,6 @@ export default {
 
     if (pathname === '/' || pathname === '') {
       pathname = '/index.html';
-    } else if (pathname === '/login') {
-      pathname = '/login.html';
     } else if (pathname === '/admin') {
       pathname = '/admin.html';
     } else if (pathname === '/recognition') {
@@ -17,6 +15,8 @@ export default {
       pathname = '/project.html';
     } else if (pathname === '/blog') {
       pathname = '/blog.html';
+    } else if (pathname.startsWith('/ideas/')) {
+      pathname = '/idea.html';
     } else if (pathname.startsWith('/cohorts/')) {
       pathname = '/cohort.html';
     }

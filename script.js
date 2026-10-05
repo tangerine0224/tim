@@ -56,20 +56,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // 4. FAQ Accordion Toggles
+  // 4. FAQ Accordion Toggles + Group Filter
   const faqItems = document.querySelectorAll('.faq-item');
+  const faqFilterBtns = document.querySelectorAll('.faq-filter-row .category-tab');
 
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question');
     questionBtn.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      
+
       // Close all active items
       faqItems.forEach(i => i.classList.remove('active'));
 
       if (!isActive) {
         item.classList.add('active');
       }
+    });
+  });
+
+  faqFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      faqFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const group = btn.getAttribute('data-group');
+      let firstVisible = null;
+
+      faqItems.forEach(item => {
+        const matches = group === 'all' || item.getAttribute('data-group') === group;
+        item.style.display = matches ? '' : 'none';
+        item.classList.remove('active');
+        if (matches && !firstVisible) firstVisible = item;
+      });
+
+      if (firstVisible) firstVisible.classList.add('active');
     });
   });
 
@@ -237,120 +257,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  // 7. Student / Admin Portal Management Logic
-  const portalModal = document.getElementById('portalModal');
-  const portalLoginBtn = document.getElementById('portalLoginBtn');
-  const closePortalModalBtn = document.getElementById('closePortalModalBtn');
-  const oneClickLoginBtn = document.getElementById('oneClickLoginBtn');
-  const portalLoginView = document.getElementById('portalLoginView');
-  const portalDashboardView = document.getElementById('portalDashboardView');
-  const portalUserHeader = document.getElementById('portalUserHeader');
-  const portalLogoutBtn = document.getElementById('portalLogoutBtn');
-
-  let selectedPortalRole = 'Program Administrator';
-
-  if (portalLoginBtn) {
-    portalLoginBtn.addEventListener('click', () => {
-      portalModal.style.display = 'flex';
-    });
-  }
-
-  if (closePortalModalBtn) {
-    closePortalModalBtn.addEventListener('click', () => {
-      portalModal.style.display = 'none';
-    });
-  }
-
-  window.addEventListener('click', (e) => {
-    if (e.target === portalModal) {
-      portalModal.style.display = 'none';
-    }
-  });
-
-  // Role selector buttons inside portal
-  const roleSelectBtns = document.querySelectorAll('.role-select-btn');
-  roleSelectBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      roleSelectBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      selectedPortalRole = btn.getAttribute('data-role') || 'User';
-    });
-  });
-
-  // 1-Click Login Simulation
-  if (oneClickLoginBtn) {
-    oneClickLoginBtn.addEventListener('click', () => {
-      portalLoginView.style.display = 'none';
-      portalDashboardView.style.display = 'block';
-      if (portalUserHeader) {
-        portalUserHeader.textContent = `Logged in as: TIM ${selectedPortalRole}`;
-      }
-    });
-  }
-
-  if (portalLogoutBtn) {
-    portalLogoutBtn.addEventListener('click', () => {
-      portalDashboardView.style.display = 'none';
-      portalLoginView.style.display = 'block';
-    });
-  }
-
-  // Portal Sub-Tab Switching
-  const portalTabBtns = document.querySelectorAll('.portal-tab-btn');
-  const portalTabPanels = document.querySelectorAll('.portal-tab-panel');
-
-  portalTabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      portalTabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const targetTab = btn.getAttribute('data-tab');
-      portalTabPanels.forEach(panel => {
-        if (panel.id === targetTab) {
-          panel.style.display = 'block';
-        } else {
-          panel.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Dynamic Database Addition 2: Save Founder to Advisory Board Grid
-  const dbAddFounderForm = document.getElementById('dbAddFounderForm');
-
-  if (dbAddFounderForm && foundersGrid) {
-    dbAddFounderForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('dbFounderName').value;
-      const role = document.getElementById('dbFounderRole').value;
-      const affil = document.getElementById('dbFounderAffil').value;
-
-      // Extract initials
-      const nameParts = name.split(' ').filter(p => p.length > 0);
-      let initials = 'AD';
-      if (nameParts.length >= 2) {
-        initials = (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase();
-      } else if (nameParts.length === 1) {
-        initials = nameParts[0].substring(0, 2).toUpperCase();
-      }
-
-      const newAdvisorCard = document.createElement('div');
-      newAdvisorCard.className = 'advisor-card';
-      newAdvisorCard.innerHTML = `
-        <div class="advisor-avatar-box">${initials}</div>
-        <h3 class="advisor-name">${name}</h3>
-        <div class="advisor-role">${role}</div>
-        <div class="advisor-affil">${affil}</div>
-      `;
-
-      foundersGrid.appendChild(newAdvisorCard);
-      dbAddFounderForm.reset();
-      portalModal.style.display = 'none';
-
-      alert(`Success! ${name} has been added to the USTH TIM Advisory Board grid.`);
-    });
-  }
 
 });

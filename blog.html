@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Idea Worth Sharing | USTH TIM Master Program</title>
-  <meta name="description" content="Idea Worth Sharing: essays and field notes from USTH TIM Gen 1 and Gen 2 on capstones, patents, fundraising, and life as a dual-degree innovation manager.">
+  <meta name="description" content="Idea Worth Sharing: lessons, tools, books and open questions shared by students, faculty, partners and alumni across the USTH TIM network.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,10 +20,9 @@
   <header class="header-nav" id="mainHeader">
     <div class="nav-container">
       <a href="/" class="nav-brand">
-        <div class="nav-brand-logo">TIM</div>
+        <img src="/tim-connect-logo.svg" alt="TIM Connect logo" class="nav-brand-logo">
         <div class="nav-brand-text">
-          <span class="nav-brand-title">USTH TIM</span>
-          <span class="nav-brand-sub">MASTER PROGRAM</span>
+          <span class="nav-brand-title">TIM CONNECT</span>
         </div>
       </a>
 
@@ -37,7 +36,7 @@
       </nav>
 
       <div class="nav-right-actions" style="display: flex; align-items: center; gap: 12px;">
-        <a href="/login" class="btn-outlined nav-portal-btn" id="portalLoginBtn" style="font-size: 13px; padding: 8px 14px;">
+        <a href="/admin" class="btn-outlined nav-portal-btn" style="font-size: 13px; padding: 8px 14px;">
           <span>Login</span>
         </a>
 
@@ -62,29 +61,28 @@
          ========================================== -->
     <section class="sheet sheet-canvas" id="blog-hero">
       <div class="container">
-        <div class="section-meta">
-          <span class="badge-tag">COMMUNITY WRITING</span>
-          <span>FIELD NOTES &bull; FROM GEN 1 &amp; GEN 2</span>
-        </div>
+        <div class="hero-grid" style="align-items: center;">
+          <div class="hero-content">
+            <div class="section-meta">
+              <span class="badge-tag">OPEN NOTEBOOK</span>
+              <span>IDEAS &bull; RESOURCES &bull; PROJECTS FROM THE NETWORK</span>
+            </div>
 
-        <h1 class="display-xl hero-title">IDEA WORTH SHARING.</h1>
+            <h1 class="display-xl hero-title">IDEA WORTH SHARING.</h1>
 
-        <p class="lead-text" style="max-width: 640px;">
-          Essays and field notes from the USTH TIM community &mdash; how a capstone became a spin-off, what a first patent filing actually takes, and what it is like to study across two countries at once.
-        </p>
+            <p class="lead-text" style="max-width: 640px;">
+              Lessons from the job, tools that saved us a week, books worth the time, side projects and open questions. If it helped you think, it belongs here.
+            </p>
 
-        <div class="hero-stats-row" style="max-width: 720px;">
-          <div class="stat-item">
-            <div class="stat-number">8</div>
-            <div class="stat-label">Articles Published</div>
+            <div class="hero-stats-row" id="ideasStatsRow" style="max-width: 720px;"></div>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">8</div>
-            <div class="stat-label">Contributing Authors</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Generations Writing</div>
+
+          <div class="hero-visual-wrapper">
+            <div class="hero-visual-card">
+              <div class="hero-art-container">
+                <img src="/idea-worth-sharing.svg" alt="A yellow box opens and small yellow idea cubes fly out to surrounding blocks, which light up as they land" class="hero-art-illustration">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -95,126 +93,15 @@
          ========================================== -->
     <section class="sheet sheet-surface" id="blog-articles">
       <div class="container">
-        <div class="blog-grid">
-          <div class="blog-card">
-            <span class="badge-tag">MINDSET</span>
-            <h3 class="blog-card-title">Why Ambiguity Is a Feature, Not a Bug</h3>
-            <p class="blog-card-excerpt">
-              On my first week inside Schneider Electric's plant, nobody handed me a spec sheet. Here is what Gen 1 learned about sitting with an undefined problem long enough to solve the right one.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">TN</div>
-              <div>
-                <div class="blog-card-author-name">Trinh Nhat Minh</div>
-                <div class="blog-card-author-sub">Gen 1 &bull; Lead Innovation Specialist, Viettel</div>
-              </div>
-            </div>
-          </div>
+        <div class="ideas-filter-bar">
+          <div class="ideas-filter-tabs" id="ideaCategoryTabs"></div>
+          <input type="text" id="ideaSearch" class="form-input idea-search-input" placeholder="Search ideas, tools, people">
+        </div>
 
-          <div class="blog-card">
-            <span class="badge-tag badge-tag-mint">VENTURE BUILDING</span>
-            <h3 class="blog-card-title">From Capstone to Spin-off: A Founder's Playbook</h3>
-            <p class="blog-card-excerpt">
-              Our materials science capstone raised $150K in seed funding before we graduated. The real work started after the thesis defense, not before.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">NH</div>
-              <div>
-                <div class="blog-card-author-name">Nguyen Thi Hoai</div>
-                <div class="blog-card-author-sub">Gen 1 &bull; Founder, GreenLoop Materials</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag badge-tag-signal">IP &amp; PATENTS</span>
-            <h3 class="blog-card-title">Filing Our First Patent: Lessons from VAST Tech Transfer</h3>
-            <p class="blog-card-excerpt">
-              Three PCT filings later, I can tell you the patent office does not care how clever your algorithm is if your claims are written badly. A field guide for first-time student inventors.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">HP</div>
-              <div>
-                <div class="blog-card-author-name">Hoang Van Phuc</div>
-                <div class="blog-card-author-sub">Gen 1 &bull; CTO, Spin-off NeuralCrop</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag">EXCHANGE LIFE</span>
-            <h3 class="blog-card-title">Navigating a French Dual-Degree Without Losing Momentum</h3>
-            <p class="blog-card-excerpt">
-              Splitting a Master's between Hanoi and France sounds romantic until you are debugging a thesis at 2am in a timezone your advisor isn't awake in. What actually helped.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">MD</div>
-              <div>
-                <div class="blog-card-author-name">Marie Dubois</div>
-                <div class="blog-card-author-sub">Gen 2 &bull; Exchange Scholar (France)</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag badge-tag-mint">INDUSTRY PARTNERSHIP</span>
-            <h3 class="blog-card-title">Pitching Enterprise Co-R&amp;D: What Schneider Electric Actually Wanted</h3>
-            <p class="blog-card-excerpt">
-              We rewrote our capstone pitch four times before a sponsor said yes. The winning version led with their roadmap, not our research interests.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">LA</div>
-              <div>
-                <div class="blog-card-author-name">Pham Thi Lan Anh</div>
-                <div class="blog-card-author-sub">Gen 2 &bull; Class President, AI &amp; Robotics</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag badge-tag-signal">ENGINEERING</span>
-            <h3 class="blog-card-title">Edge AI on a Student Budget: Our Drone Fleet Build Log</h3>
-            <p class="blog-card-excerpt">
-              Running crop-health inference on a $40 edge board, in the field, with no cloud fallback. Notes from the USTH-CNRS Joint Lab drone capstone.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">HN</div>
-              <div>
-                <div class="blog-card-author-name">Le Hoang Nam</div>
-                <div class="blog-card-author-sub">Gen 2 &bull; Research Lead, DeepTech Ventures</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag">CUSTOMER EXPERIENCE</span>
-            <h3 class="blog-card-title">Five Lessons From a Banking Capstone</h3>
-            <p class="blog-card-excerpt">
-              Testing an account-opening journey with 12 real users inside a regulated bank taught me more about compliance than any lecture did. What actually made it into the next-quarter roadmap.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">LH</div>
-              <div>
-                <div class="blog-card-author-name">Le Thu Hang</div>
-                <div class="blog-card-author-sub">Cohort 01 &bull; Head of Digital Channels, Phuong Dong Bank</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog-card">
-            <span class="badge-tag badge-tag-mint">STARTUP MENTORING</span>
-            <h3 class="blog-card-title">What Mentoring Taught EduNest About Pricing</h3>
-            <p class="blog-card-excerpt">
-              Four sessions with a cross-sector student team was enough to make us rethink our subscription model from scratch. Here is what changed, and why we almost didn't listen.
-            </p>
-            <div class="blog-card-meta">
-              <div class="blog-card-avatar">DN</div>
-              <div>
-                <div class="blog-card-author-name">Do Hai Nam</div>
-                <div class="blog-card-author-sub">Cohort 01 &bull; Founder &amp; CEO, EduNest</div>
-              </div>
-            </div>
-          </div>
+        <div class="ideas-bento-grid" id="ideasBentoGrid"></div>
+        <div class="projects-empty-state" id="ideasEmptyState">
+          <p>Nothing here yet. Be the first to share one.</p>
+          <a href="mailto:tim@example.edu.vn?subject=Idea%20Worth%20Sharing%20Submission" class="btn-primary">Share an idea &rarr;</a>
         </div>
       </div>
     </section>
@@ -226,13 +113,13 @@
       <div class="container">
         <div class="pay-forward-box">
           <div>
-            <span class="badge-tag badge-tag-signal" style="margin-bottom: 8px; display: inline-block;">WRITE FOR THE COMMUNITY</span>
-            <h3 class="display-m" style="color: var(--on-ink);">GOT AN IDEA WORTH SHARING?</h3>
+            <span class="badge-tag badge-tag-signal" style="margin-bottom: 8px; display: inline-block;">OPEN TO EVERYONE IN THE NETWORK</span>
+            <h3 class="display-m" style="color: var(--on-ink);">GOT SOMETHING WORTH SHARING?</h3>
             <p style="color: var(--muted-on-ink); font-size: 15px; max-width: 500px; margin-top: 8px;">
-              Gen 1 alumni, Gen 2 candidates, advisors, and partners are all welcome to contribute a field note, a lesson learned, or a technical write-up.
+              A lesson, a tool, a book, a side project or a question. Students, faculty, partners and USTH alumni are all welcome to post.
             </p>
           </div>
-          <a href="mailto:tim.master@usth.edu.vn?subject=Idea%20Worth%20Sharing%20Submission" class="btn-primary btn-light">Submit Your Idea &rarr;</a>
+          <a href="mailto:tim@example.edu.vn?subject=Idea%20Worth%20Sharing%20Submission" class="btn-primary btn-light">Share an idea &rarr;</a>
         </div>
       </div>
     </section>
@@ -296,6 +183,16 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/ideas-data.js"></script>
+  <script src="/ideas-render.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.IdeasUI) {
+        window.IdeasUI.renderStats(document.getElementById('ideasStatsRow'));
+        window.IdeasUI.initBlogPage(document);
+      }
+    });
+  </script>
+  <script src="/script.js"></script>
 </body>
 </html>

@@ -21,8 +21,6 @@ const server = http.createServer((req, res) => {
   // Route aliases
   if (urlPath === '/' || urlPath === '') {
     urlPath = '/index.html';
-  } else if (urlPath === '/login') {
-    urlPath = '/login.html';
   } else if (urlPath === '/admin') {
     urlPath = '/admin.html';
   } else if (urlPath === '/recognition') {
@@ -33,6 +31,8 @@ const server = http.createServer((req, res) => {
     urlPath = '/project.html';
   } else if (urlPath === '/blog') {
     urlPath = '/blog.html';
+  } else if (urlPath.startsWith('/ideas/')) {
+    urlPath = '/idea.html';
   } else if (urlPath.startsWith('/cohorts/')) {
     urlPath = '/cohort.html';
   }
@@ -60,7 +60,6 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`USTH TIM Web Server running at http://localhost:${PORT}/`);
   console.log(`- Portfolio: http://localhost:${PORT}/`);
-  console.log(`- Login:     http://localhost:${PORT}/login`);
   console.log(`- Admin:     http://localhost:${PORT}/admin`);
   console.log(`- Recognition: http://localhost:${PORT}/recognition`);
   console.log(`- Projects:  http://localhost:${PORT}/projects`);
